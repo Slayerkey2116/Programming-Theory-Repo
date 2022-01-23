@@ -28,19 +28,19 @@ public class GameManager : MonoBehaviour
         isGameActive = true;
         // Set score text into game manager script
         score = 0;
-        UpdateScore(0);
+//        UpdateScore(0);
 
         // Spawns enemies
         InvokeRepeating("SpawnEnemy", startDelay, spawnInterval);
     }
 
     // Updates Score
-    public void UpdateScore(int scoreToAdd)
+ /*   public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
-
+*/
 
     public void SpawnEnemy()
     {

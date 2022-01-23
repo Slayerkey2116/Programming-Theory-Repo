@@ -12,7 +12,7 @@ public class BigEnemy : Enemy
         if (health <= 0)
         {
             gameObject.SetActive(false);
-            gameManager.UpdateScore(pointValue);
+ //           gameManager.UpdateScore(pointValue);
         }
     }
 

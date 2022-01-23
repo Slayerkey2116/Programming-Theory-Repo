@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.InputSystem;
+
 public class Shoot : MonoBehaviour
 {
     // Player HP
@@ -16,6 +18,8 @@ public class Shoot : MonoBehaviour
 
     public GameManager gameManager;
 
+    private StarterAssets.StarterAssetsInputs input;
+
 
     private void Awake()
     {
@@ -29,7 +33,7 @@ public class Shoot : MonoBehaviour
     private void Update()
     {
         // FIRE
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (input.shoot) // When mouse is pressed fire
         {
             playerAudio.PlayOneShot(fire, 1.0f);
 
