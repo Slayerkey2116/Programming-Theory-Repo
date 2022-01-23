@@ -12,7 +12,7 @@ public class BigEnemy : Enemy
         if (health <= 0)
         {
             gameObject.SetActive(false);
- //           gameManager.UpdateScore(pointValue);
+            gameManager.UpdateScore(pointValue);
         }
     }
 
@@ -23,7 +23,7 @@ public class BigEnemy : Enemy
 
     public override void Move()
     {        
-        speed = 5;
+        speed = 1.5f;
     }
     // Update is called once per frame
     void Update()

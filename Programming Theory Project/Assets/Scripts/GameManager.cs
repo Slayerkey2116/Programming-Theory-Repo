@@ -4,7 +4,6 @@ using UnityEngine;
 
 using TMPro; // Using score tracker
 using UnityEngine.SceneManagement; //Restart Button
-using UnityEngine.UI; // Show button on game over
 
 public class GameManager : MonoBehaviour
 {
@@ -28,24 +27,24 @@ public class GameManager : MonoBehaviour
         isGameActive = true;
         // Set score text into game manager script
         score = 0;
-//        UpdateScore(0);
+        UpdateScore(0);
 
         // Spawns enemies
         InvokeRepeating("SpawnEnemy", startDelay, spawnInterval);
     }
 
     // Updates Score
- /*   public void UpdateScore(int scoreToAdd)
+    public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
-*/
+
 
     public void SpawnEnemy()
     {
         Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX),
-                                      0.3f, Random.Range(-spawnRangeZ, spawnRangeZ));
+                                      0.5f, Random.Range(-spawnRangeZ, spawnRangeZ));
         int badPeeps = Random.Range(0, BadMan.Length);
         Instantiate(BadMan[badPeeps], spawnPos, BadMan[badPeeps].transform.rotation);
     }

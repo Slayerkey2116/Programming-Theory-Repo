@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int health;
-    public float speed = 10;
+    public float speed = 1;
 
     // Calls GameManager script
     public GameManager gameManager;
@@ -14,16 +14,21 @@ public class Enemy : MonoBehaviour
     // Gives object a point value of 1
     public int pointValue = 1;
     // Calls Player script
-    public Shoot hp;
+    public Player hp;
 
     void Start()
     {
-      gameManager = GameObject.Find("Spawner").GetComponent<GameManager>();
-      player = GameObject.FindWithTag("Player");
-      hp = GameObject.Find("Player").GetComponent<Shoot>();
+     
     }
 
-    
+    private void Awake()
+    {
+        gameManager = GameObject.Find("Spawner").GetComponent<GameManager>();
+        player = GameObject.FindWithTag("Player");
+        hp = GameObject.Find("Player").GetComponent<Player>();
+    }
+
+
     void Update()
     {
         //Looks at player
@@ -58,7 +63,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             gameObject.SetActive(false);
- //           gameManager.UpdateScore(pointValue);
+            gameManager.UpdateScore(pointValue);
 
         }
     }
@@ -70,7 +75,7 @@ public class Enemy : MonoBehaviour
     public virtual void Move()
     {
         //Moves toward player
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+       // transform.Translate(Vector3.forward * Time.deltaTime * speed);
 
     }
 }
