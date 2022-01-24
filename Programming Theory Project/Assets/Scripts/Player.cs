@@ -52,6 +52,8 @@ public class Player : MonoBehaviour
         // FIRE
         if (Input.GetKeyDown(KeyCode.Mouse0)) // When mouse is pressed fire
         {
+            print("Pew");
+
             GameObject pooledProjectile = BulletPooler.SharedInstance.GetPooledObject();
             if (pooledProjectile != null)
             {
@@ -84,6 +86,13 @@ public class Player : MonoBehaviour
             if (Health > 0)
             {
                 Health -= damage;
+            }
+        }
+        if (other.gameObject.tag == "Wall")
+        {
+            if (Health > 0)
+            {
+                Health = 0;
             }
         }
     }

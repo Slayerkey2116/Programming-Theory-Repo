@@ -71,11 +71,12 @@ public class Enemy : MonoBehaviour
     public virtual void Attack()
     {
         hp.Health -= 1;
+        Destroy(this.gameObject);
     }
     public virtual void Move()
     {
         //Moves toward player
-       // transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
 
     }
 }
