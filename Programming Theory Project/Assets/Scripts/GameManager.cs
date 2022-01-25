@@ -16,10 +16,15 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     // Enemy Spawns
     public GameObject[] BadMan;
-    private float spawnRangeX = 15;
+    private float spawnRangeX = 25;
     private float spawnRangeZ = 20;
     private float startDelay = 4;
-    private float spawnInterval = 5f;
+    private float spawnInterval = 3f;
+
+    // Finds GameObjects
+    private GameObject player;
+    private GameObject enemy;
+    private GameObject bullet;
 
     void Start()
     {
@@ -31,6 +36,10 @@ public class GameManager : MonoBehaviour
 
         // Spawns enemies
         InvokeRepeating("SpawnEnemy", startDelay, spawnInterval);
+        // Finds GameObjects
+        player = GameObject.FindWithTag("Player");
+        enemy = GameObject.FindWithTag("Enemy");
+        bullet = GameObject.FindWithTag("Bullet");
     }
 
     // Updates Score
@@ -45,7 +54,7 @@ public class GameManager : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX),
                                       0.5f, Random.Range(-spawnRangeZ, spawnRangeZ));
-        int badPeeps = Random.Range(0, BadMan.Length);
+        int badPeeps = Random.Range(0, BadMan.Length);//0
         Instantiate(BadMan[badPeeps], spawnPos, BadMan[badPeeps].transform.rotation);
     }
 
@@ -72,8 +81,10 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
         // Cancels enemy spawning
         CancelInvoke("SpawnEnemy");
-
-      
+        // Hides GameObjects
+        player.gameObject.SetActive(false);
+        enemy.gameObject.SetActive(false);
+        bullet.gameObject.SetActive(false);
 
 
     }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int health;
-    public float speed = 1;
+    public int health = 1;
+    public float speed = 10;
 
     // Calls GameManager script
     public GameManager gameManager;
@@ -18,35 +18,38 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-     
+        gameManager = GameObject.Find("Spawner").GetComponent<GameManager>();
+        player = GameObject.FindWithTag("Player");
+        hp = GameObject.Find("Player").GetComponent<Player>();
     }
-
-    private void Awake()
+    /*
+    private void Awake ()
     {
         gameManager = GameObject.Find("Spawner").GetComponent<GameManager>();
         player = GameObject.FindWithTag("Player");
         hp = GameObject.Find("Player").GetComponent<Player>();
     }
+    */
 
-
-    void Update()
+    public void Update()
     {
         //Looks at player
-        this.transform.LookAt(player.transform);
+        transform.LookAt(player.transform);
         Move();
         //Checks player Health
         if (hp.Health <= 0)
         {
             pointValue = 0;
         }
-
+        Health();
     }
 
     public void OnTriggerEnter(Collider collider)
     {
         if (collider.tag == "Bullet")
         {
-            health -= 1;            
+            health -= 1;
+           
         }
 
         if (collider.gameObject.CompareTag("Player"))
@@ -56,24 +59,25 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public virtual void Health()
+    public void Health()
     {
-        health = 3;
-
         if (health <= 0)
         {
+            Destroy(gameObject);
             gameObject.SetActive(false);
             gameManager.UpdateScore(pointValue);
 
         }
     }
-
+    
     public virtual void Attack()
     {
         hp.Health -= 1;
-        Destroy(this.gameObject);
+        Destroy(gameObject);
+        print("Player HP -1");
     }
-    public virtual void Move()
+    
+    public void Move()
     {
         //Moves toward player
         transform.Translate(Vector3.forward * Time.deltaTime * speed);

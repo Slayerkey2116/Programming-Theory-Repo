@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int MaxHealth = 10;
     public int Health { get; set; }
-    public int damage = 1;
 
     public GameManager gameManager;
 
@@ -19,7 +18,12 @@ public class Player : MonoBehaviour
     {
         Health = MaxHealth;       
     }
-    private void Update()
+
+    public void Start()
+    {
+        gameManager = GameObject.Find("Spawner").GetComponent<GameManager>();
+    }
+    public void Update()
     {
         AimTowardMouse();  // For Isometric or topdown mouse aim
 
@@ -52,8 +56,6 @@ public class Player : MonoBehaviour
         // FIRE
         if (Input.GetKeyDown(KeyCode.Mouse0)) // When mouse is pressed fire
         {
-            print("Pew");
-
             GameObject pooledProjectile = BulletPooler.SharedInstance.GetPooledObject();
             if (pooledProjectile != null)
             {
@@ -71,23 +73,15 @@ public class Player : MonoBehaviour
         }
 
         // Player Health, Take damage on hit , stop function when health reaches zero
-       /* if (Health <= 0)
+        if (Health <= 0)
         {
             gameManager.GameOver();
         }
-       */
+       
     }
 
     public void OnTriggerEnter(Collider other) // If player touches enemy, player health decreases by 1
     {
-
-        if (other.gameObject.tag == "Enemy")
-        {
-            if (Health > 0)
-            {
-                Health -= damage;
-            }
-        }
         if (other.gameObject.tag == "Wall")
         {
             if (Health > 0)
