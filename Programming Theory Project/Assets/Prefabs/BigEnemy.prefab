@@ -109,8 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f690600205e5fde4db4c37e0d9e81b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  speed: 5
+  health: 5
+  speed: 25
+  damage: 3
   gameManager: {fileID: 0}
   player: {fileID: 0}
   pointValue: 5

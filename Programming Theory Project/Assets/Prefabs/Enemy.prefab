@@ -110,7 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  speed: 5
+  speed: 20
+  damage: 1
   gameManager: {fileID: 0}
   player: {fileID: 0}
   pointValue: 1

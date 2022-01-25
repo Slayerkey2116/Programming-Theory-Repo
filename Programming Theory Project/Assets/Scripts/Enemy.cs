@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public int health = 1;
     public float speed = 10;
+    public int damage = 1;
 
     // Calls GameManager script
     public GameManager gameManager;
@@ -22,14 +23,6 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         hp = GameObject.Find("Player").GetComponent<Player>();
     }
-    /*
-    private void Awake ()
-    {
-        gameManager = GameObject.Find("Spawner").GetComponent<GameManager>();
-        player = GameObject.FindWithTag("Player");
-        hp = GameObject.Find("Player").GetComponent<Player>();
-    }
-    */
 
     public void Update()
     {
@@ -48,7 +41,7 @@ public class Enemy : MonoBehaviour
     {
         if (collider.tag == "Bullet")
         {
-            health -= 1;
+            health -= damage;
            
         }
 
@@ -72,7 +65,7 @@ public class Enemy : MonoBehaviour
     
     public virtual void Attack()
     {
-        hp.Health -= 1;
+        hp.Health -= damage;
         Destroy(gameObject);
         print("Player HP -1");
     }

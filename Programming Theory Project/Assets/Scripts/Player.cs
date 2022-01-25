@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
         {
             gameManager.GameOver();
         }
-       
+        gameManager.UpdateHealth(0);
     }
 
     public void OnTriggerEnter(Collider other) // If player touches enemy, player health decreases by 1

@@ -7,7 +7,7 @@ public class BigEnemy : Enemy
 
     public override void Attack()
     {
-        hp.Health -= 3;
+        hp.Health -= damage;
         Destroy(gameObject);
         print("Player HP -3");
     }
