@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     // Player HP
     [SerializeField]
     private int MaxHealth = 10;
-    public int Health { get; set; }
+    public int Health { get; set; } // ENCAPSULATION
 
     public GameManager gameManager;
 
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
-        AimTowardMouse();  // For Isometric or topdown mouse aim
+        AimTowardMouse();  // ABSTRACTION
 
         float horizontal = Input.GetAxis("Horizontal"); // Reads inout from WASD OR ARROWS KEYS
         float vertical = Input.GetAxis("Vertical"); // Reads inout from WASD OR ARROWS KEYS
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
         void AimTowardMouse()  // For Isometric or topdown mouse aim
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // This Works
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
             if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, layerMask))
             {
                 var direction = hitInfo.point - transform.position;
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
             GameObject pooledProjectile = BulletPooler.SharedInstance.GetPooledObject();
             if (pooledProjectile != null)
             {
-                pooledProjectile.SetActive(true); // activate it
+                pooledProjectile.SetActive(true); // activate pooled object it
                 pooledProjectile.transform.position = transform.position; // position it at player
 
                 pooledProjectile.transform.rotation = transform.rotation;  // fires in direction the player is facing
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Player Health, Take damage on hit , stop function when health reaches zero
+        // Player Health, calls GameOver method from GameManager.cs
         if (Health <= 0)
         {
             gameManager.GameOver();
@@ -80,9 +80,9 @@ public class Player : MonoBehaviour
         gameManager.UpdateHealth(0);
     }
 
-    public void OnTriggerEnter(Collider other) // If player touches enemy, player health decreases by 1
+    public void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.tag == "Wall")
+        if (other.gameObject.tag == "Wall") 
         {
             if (Health > 0)
             {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BigEnemy : Enemy
 {
 
-    public override void Attack()
+    public override void Attack() // POLYMORPHISM 
     {
         hp.Health -= damage;
         Destroy(gameObject);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour // INHERITANCE
 {
     public int health = 1;
     public float speed = 10;
@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    public virtual void Attack()
+    public virtual void Attack() 
     {
         hp.Health -= damage;
         Destroy(gameObject);
